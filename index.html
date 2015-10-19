@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <h1> Map </h1>
+
+  <!-- Insert a div for your map! -->
+  <div id="map"></div>
+
+  <!-- Link to content delivery network (to load leaflet's library)-->
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+
+  <!-- Be sure to use a different script tags below -->
+  <script>
+    // Inserts map into page and sets original coordinates
+    var map = L.map('map').setView([51.529859, -0.046369], 12);
+
+    // Tile Layer can be changed to various styles found on Mapbox
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 20,
+      // supply your own ID
+      id: 'hdrdavies.cifxsd3xv0299u3lzi4a1lukr',
+      // and access token
+      accessToken: 'pk.eyJ1IjoiaGRyZGF2aWVzIiwiYSI6ImNpZnhzZDQ2MjAyOTB0MG03MnZsNmkzYzEifQ.Kf3Xjaf1ubssxWjnB6tMAA'
+    }).addTo(map);
+
+    // Place a marker on your local shop!
+    var simplyFresh = L.marker([51.529497, -0.046369]).addTo(map);
+
+    // Create custom FAC icon!
+    var FacIcon = L.icon({
+      iconUrl: 'http://www.foundersandcoders.com/assets/fac-logo.png',
+
+      iconSize: [50, 50], // size of the icon
+      iconAnchor: [0  , 2], // point of the icon which will correspond to marker's location
+      popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    // Implement FAC icon on map!
+    var facHq = L.marker([51.5297, -0.04248], {
+      icon: FacIcon
+    }).addTo(map);
+
+    // Put a fancy circle on the map!
+    var circle = L.circle([51.522, -0.11], 500, {
+      color: 'purple',
+      fillColor: '#f03',
+      fillOpacity: 1
+    }).addTo(map);
+
+    // Want to add a polygon? Well now you can!
+    var polygon = L.polygon([
+      [51.509, -0.08],
+      [51.503, -0.06],
+      [51.51, -0.047]
+    ]).addTo(map);
+
+    // add a libellous popup to Simply Fresh!
+    simplyFresh.bindPopup("<b>Go here for some tasty wine out of the barrel</b><br>p.s. it's overpriced.").openPopup();
+  </script>
+</body>
+
+</html>

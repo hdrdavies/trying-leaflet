@@ -1,2 +1,3 @@
-# trying-leaflet
-fac6 readme for the leaflet library
+# Leaflet experiment
+
+This is our simple code to follow, attached to the Leaflet Readme, found [here]().
